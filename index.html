@@ -1,68 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Midterm Project</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Api</title>
 
-<!----links to our stylesheet-->
-<link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css">
 
-
-<!--google maps-->
-
-<script src=“https://maps.googleapis.com/maps/api/js?key=AIzaSyD92Ba0t8M10kaV2QAoslOcXOwY5y6HMwKEY&callback=initMap&libraries=&v=weekly”
-async>
-
-</script> 
-  
-<script> 
-
-    // Initialize and add the map 
-    function initMap() { 
-
-        // The location of Geeksforgeeks office 
-        const gfg_office = { 
-            lat: 28.50231, 
-            lng: 77.40548 
-        }; 
-
-        // Create the map, centered at gfg_office 
-        const map = new google.maps.Map( 
-                document.getElementById("map"), { 
-
-            // Set the zoom of the map 
-            zoom: 17.56, 
-            center: gfg_office, 
-        }); 
-    } 
-</script> 
 
 </head>
+
 <body>
-  
-    <div class="jumbotron">
-        <div class="container-fluid">
-            <h1> Find your location</h1>
-            <p> This app will find nearby crossfit gyms</p>
-            </div>/.container-fluid>
+    <h1>Google Maps</h1>
 
-    <div class="container-fluid">
-        <div id="googleMap">         
-        </div>/#googleMap 
-        <div id="output">
-        </div>/#output
-    </div>/.container-fluid
+    <div id="map"></div>
 
 
-    </div>/.jumbotron
 
-    
 
-    <!--Google Maps API-->
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD92Ba0t8M10kaV2QAoslOcXOwY5y6HMw&callback=initMap"></script>
-    <script src="app.js"></script>
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD92Ba0t8M10kaV2QAoslOcXOwY5y6HMw&callback=initMap">
+</script>
+    <script src="/app.js"></script>
 </body>
 </html>
