@@ -1,49 +1,30 @@
-function initMap(){
+// Initialize and add the map
+let map;
 
-    // Map option
+async function initMap() {
+  // The location of Uluru
+  const position = { lat: -25.344, lng: 131.031 };
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    var options = {
-        center: {lat: 38.3460 , lng:-0.4907 },
-        zoom: 10
-    }
+  // The map, centered at Uluru
+  map = new Map(document.getElementById("map"), {
+    zoom: 4,
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
 
-    //New Map
-    map = new google.maps.Map(document.getElementById("map"),options)
+  // The marker, positioned at Uluru
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    title: "Uluru",
+  });
+}
 
-    //listen for click on map location
-
-    google.maps.event.addListener(map, "click", (event) => {
-        //add Marker
-        addMarker({location:event.latLng});
-    })
-
-
-
-    const marker = new google.maps.Marker({
-    position:{lat: 37.9922, lng: -1.1307},
-    map:map,
-    icon:"https://img.icons8.com/nolan/2x/marker.png"
-    });
-
-    //InfoWindow
-
-    const detailWindow = new google.maps.InfoWindow({
-        content: `<h2>Murcia City</h2>`
-    });
-
-    marker.addListener("mouseover", () =>{
-        detailWindow.open(map, marker);
-    })
-
-    //Add Markers to Array
-
-    let MarkerArray = [ {location:{lat: 37.9922, lng: -1.1307}, 
-        imageIcon: "https://img.icons8.com/nolan/2x/marker.png", 
-        content: `<h2>Murcia City</h2>`},
-
-        {location:{lat: 39.4699, lng: -0.3763}},
-
-        {location:{lat: 38.5411, lng: -0.1225},content: `<h2>Benidorm City</h2>` }
+initMap();
 
 
 
