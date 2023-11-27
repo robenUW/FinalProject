@@ -19,8 +19,6 @@ function initMap(){
 
 
 
-    //Marker
-/*
     const marker = new google.maps.Marker({
     position:{lat: 37.9922, lng: -1.1307},
     map:map,
@@ -36,7 +34,6 @@ function initMap(){
     marker.addListener("mouseover", () =>{
         detailWindow.open(map, marker);
     })
-    */
 
     //Add Markers to Array
 
