@@ -16,6 +16,8 @@ async function initMap() {
     mapId: "DEMO_MAP_ID",
   });
 
+  infoWindow = new google.maps.InfoWindow();
+  
   // The marker, positioned at Uluru
   const marker = new AdvancedMarkerElement({
     map: map,
