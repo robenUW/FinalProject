@@ -1,5 +1,5 @@
 // Initialize and add the map
-let map;
+let map, infoWindow;
 
 async function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
