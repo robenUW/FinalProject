@@ -1,33 +1,17 @@
-// Initialize and add the map
-let map;infoWindow;
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see the error "The Geolocation service
+// failed.", it means you probably did not give permission for the browser to
+// locate you.
+let map, infoWindow;
 
-async function initMap() {
-  // The location of Uluru
-  const position = { lat: -25.344, lng: 131.031 };
-  // Request needed libraries.
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-  // The map, centered at Uluru
-  map = new Map(document.getElementById("map"), {
-    zoom: 4,
-    center: position,
-    mapId: "DEMO_MAP_ID",
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 6,
   });
-
   infoWindow = new google.maps.InfoWindow();
-  
-  // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerElement({
-    map: map,
-    position: position,
-    title: "Uluru",
-  });
-}
 
-
-const locationButton = document.createElement("button");
+  const locationButton = document.createElement("button");
 
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
@@ -56,6 +40,7 @@ const locationButton = document.createElement("button");
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
@@ -67,4 +52,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
-initMap();
+window.initMap = initMap;
