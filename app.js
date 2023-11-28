@@ -39,7 +39,7 @@ function initMap() {
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
       location: location,
-      radius: 50,
+      radius: 5000000000,
       keyword: ['crossfit gym']
     },
     callback);
