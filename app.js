@@ -18,7 +18,7 @@ function initMap() {
   infoWindow2 = new google.maps.InfoWindow();
 
   const request = {
-    query: "crossfit gyms",
+    query: "crossfit ascend",
     fields: ["name", "geometry"],
   };
 
@@ -40,6 +40,7 @@ function createMarker(place) {
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
+    label: labels[labelIndex++ % labels.length],
   });
 
   ///get location
