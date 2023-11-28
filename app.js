@@ -11,7 +11,7 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: sydney,
-    zoom: 15,
+    zoom: 5,
   });
 
 // Create the search box and link it to the UI element.
