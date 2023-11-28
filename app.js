@@ -11,7 +11,7 @@ async function initMap() {
       zoom: 8,
   });
 }
-  infoWindow = new google.maps.InfoWindow();
+  const infoWindow = new google.maps.InfoWindow();
 
   const locationButton = document.createElement("button");
 
