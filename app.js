@@ -6,7 +6,7 @@ let map;
 let service;
 let temp_lat = '';
 let temp_lng = '';
-let infoWindow;
+let infowindow;
 getLocation();
 
 
@@ -27,22 +27,16 @@ function showPosition(position) {
 
 
 function initMap() {
-  var location = {
-    lat: temp_lat,
-    lng: temp_lng
-  };
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: location,
-    zoom: 15
-  });
+  const mylocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
   infowindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
-    center: sydney,
+    center: mylocation,
     zoom: 15,
   });
 
   const request = {
-    query: "Museum of Contemporary Art Australia",
+    query: "Crossfit Ascend",
     fields: ["name", "geometry"],
   };
 
