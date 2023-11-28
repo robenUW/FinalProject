@@ -5,10 +5,16 @@
 let map, infoWindow;
 
 function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const { Place } = await google.maps.importLibrary("places");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 6,
   });
+
+  findPlace(AdvancedMarkerElement, Place);
+  getPlaceDetails(Place);
   infoWindow = new google.maps.InfoWindow();
 
   const locationButton = document.createElement("button");
@@ -52,4 +58,28 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
+
+
+
+async function findPlace(AdvancedMarkerElement, Place) {
+  const request = {
+    query: "Crossfit Gym",
+    fields: ["displayName", "location"],
+    locationBias: centerCoordinates,
+  };
+  const { places } = await Place.findPlaceFromQuery(request);
+
+  if (places.length) {
+    const place = places[0];
+    const location = place.location;
+    const markerView = new AdvancedMarkerElement({
+      map,
+      position: place.location,
+      title: place.displayName,
+    });
+
+    map.setCenter(location);
+  } else {
+    console.log("No results");
+  }
 window.initMap = initMap;
