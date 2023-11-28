@@ -4,6 +4,7 @@
 let map;
 let service;
 let infoWindow;
+let infoWindow2;
 
 function initMap() {
   const sydney = new google.maps.LatLng(-33.867, 151.195);
@@ -14,6 +15,7 @@ function initMap() {
   });
 
   infoWindow = new google.maps.InfoWindow();
+  infoWindow2 = new google.maps.InfoWindow();
 ///get location
   const locationButton = document.createElement("button");
 
@@ -54,6 +56,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation.",
   );
   
+
 //places
 
 
@@ -84,8 +87,8 @@ function createMarker(place) {
   });
 
   google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name || "");
-    infowindow.open(map);
+    infoWindow2.setContent(place.name || "");
+    infoWindow2.open(map);
   });
 }
 
