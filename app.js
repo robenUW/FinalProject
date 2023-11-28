@@ -106,8 +106,6 @@ function createMarker(place) {
 }
 
 
-
-
   ///get location
   const locationButton = document.createElement("button");
 
@@ -138,8 +136,6 @@ function createMarker(place) {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
-}
-
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
