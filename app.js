@@ -35,12 +35,12 @@ function initMap() {
     center: location,
     zoom: 15
   });
-  infowindow = new google.maps.InfoWindow();
+infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
       location: location,
       radius: 5000000000,
-      keyword: ['crossfit gym']
+      keyword: ['gym']
     },
     callback);
 }
