@@ -12,8 +12,6 @@ function initMap() {
     zoom: 6,
   });
 
-  
-
   infoWindow = new google.maps.InfoWindow();
   infowindow2 = new google.maps.InfoWindow();
 
@@ -33,7 +31,6 @@ function initMap() {
     }
   });
 }
-
 
   const locationButton = document.createElement("button");
 
