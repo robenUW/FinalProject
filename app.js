@@ -18,7 +18,7 @@ function initMap() {
   infoWindow2 = new google.maps.InfoWindow();
 
   const request = {
-    query: "Museum of Contemporary Art Australia",
+    query: "crossfit gyms",
     fields: ["name", "geometry"],
   };
 
