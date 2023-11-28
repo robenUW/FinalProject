@@ -1,17 +1,15 @@
-// Initialize and add the map
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see the error "The Geolocation service
+// failed.", it means you probably did not give permission for the browser to
+// locate you.
 let map, infoWindow;
 
-
-async function initMap() {
-  // Request libraries when needed, not in the script tag.
-  const { Map } = await google.maps.importLibrary("maps");
-  // Short namespaces can be used.
-  map = new Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8,
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 6,
   });
-}
-  const infoWindow = new google.maps.InfoWindow();
+  infoWindow = new google.maps.InfoWindow();
 
   const locationButton = document.createElement("button");
 
@@ -42,6 +40,7 @@ async function initMap() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
@@ -53,4 +52,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
-initMap();
+window.initMap = initMap;
