@@ -1,16 +1,16 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 let map;
 let service;
 let infoWindow;
 let infoWindow2;
 
+
+//Creates function initMap to bring map into web app
+//sets default location to Madison
 function initMap() {
-  const sydney = new google.maps.LatLng(-33.867, 151.195);
+  const madison = new google.maps.LatLng(43.0766, 89.4125);
 
   map = new google.maps.Map(document.getElementById("map"), {
-    center: sydney,
+    center: madison,
     zoom: 18,
   });
 
@@ -27,7 +27,7 @@ map.addListener("bounds_changed", () => {
 
   infoWindow = new google.maps.InfoWindow();
   infoWindow2 = new google.maps.InfoWindow();
-
+//pulls the location request to query for places associated the term "crossfit"
   const request = {
     query: "crossfit",
     fields: ["name", "geometry"],
@@ -45,6 +45,7 @@ map.addListener("bounds_changed", () => {
   });
 }
 
+//creates marker where the Crossfit Gym location is
 function createMarker(place) {
   if (!place.geometry || !place.geometry.location) return;
 
@@ -54,9 +55,12 @@ function createMarker(place) {
   });
 
   ///get location
+
+
+  //creates the bottom to obtain location
   const locationButton = document.createElement("button");
 
-  locationButton.textContent = "Pan to Current Location";
+  locationButton.textContent = "Current Location";
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   locationButton.addEventListener("click", () => {
@@ -70,7 +74,7 @@ function createMarker(place) {
           };
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
+          infoWindow.setContent("Your Location.");
           infoWindow.open(map);
           map.setCenter(pos);
         },
@@ -84,7 +88,7 @@ function createMarker(place) {
     }
   });
 }
-
+//calls an error if location is not found
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
@@ -93,11 +97,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation.",
   );
   
-
+//calls the buttons function to map
   google.maps.event.addListener(marker, "click", () => {
     infoWindow2.setContent(place.name || "");
     infoWindow2.open(map);
   });
 }
 
+
+//calls the map
 window.initMap = initMap;
