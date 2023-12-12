@@ -11,7 +11,7 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: madison,
-    zoom: 18,
+    zoom: 20,
   });
 
 // Create the search box and link it to the UI element.
