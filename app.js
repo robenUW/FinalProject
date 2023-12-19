@@ -1,3 +1,17 @@
+//create welcome modal/popup
+// Get references to modal and close button
+const modal = document.getElementById("instructions-modal");
+const closeModalButton = document.getElementById("close-modal");
+
+// Show the modal when the page loads
+window.onload = function () {
+  modal.style.display = "block";
+};
+
+// Close the modal when the close button is clicked
+closeModalButton.onclick = function () {
+  modal.style.display = "none";
+};
 let map;
 let service;
 let infoWindow;
@@ -54,10 +68,20 @@ function createMarker(place) {
     position: place.geometry.location,
   });
 
+  // Create an info window for this marker
+  const infoWindow = new google.maps.InfoWindow({
+    content: place.name,
+  });
+
+   // Add a click event listener to open the info window when the marker is clicked
+   marker.addListener("click", () => {
+    infoWindow.open(map, marker);
+  });
+
   ///get location
 
 
-  //creates the bottom to obtain location
+  //creates the button to obtain location
   const locationButton = document.createElement("button");
 
   locationButton.textContent = "Current Location";
