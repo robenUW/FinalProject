@@ -2,6 +2,8 @@ let map;
 let service;
 let infoWindow;
 let infoWindow2;
+let origin;
+let destination
 
 
 //Creates function initMap to bring map into web app
@@ -37,9 +39,11 @@ map.addListener("bounds_changed", () => {
   service.findPlaceFromQuery(request, (results, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < results.length; i++) {
+        // log results
+        console.log(results);
         createMarker(results[i]);
       }
-
+      origin = results[0].geometry.location;
       map.setCenter(results[0].geometry.location);
     }
   });
@@ -77,6 +81,7 @@ function createMarker(place) {
           infoWindow.setContent("Your Location.");
           infoWindow.open(map);
           map.setCenter(pos);
+          calcRoute(pos);
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -104,6 +109,24 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   });
 }
 
+// add calculate route 
+function calcRoute(destination) {
+  var request = {
+    origin: origin,
+    destination: destination,
+    travelMode: 'DRIVING'
+  }
+  var directionsService = new google.maps.DirectionsService();
+  
+  var directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+
+  directionsService.route(request, function(result,status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+    }
+  });
+}
 
 //calls the map
 window.initMap = initMap;
